@@ -100,7 +100,6 @@ function createElements(createElement, clearPiesTimeout) {
 	}
 	creator();
 	setInterval(function() {
-		console.log(document.querySelectorAll('img'));
 		var toAdd = usedDivs.splice(0, totalPies);
 		divPool = divPool.concat(toAdd);
 		creator();
