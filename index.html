@@ -1,0 +1,313 @@
+<!doctype html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+		<style>
+			body {
+				height: 110vh;
+				background-image: linear-gradient(to right, transparent, white, transparent); 
+				font-family: 'Lora', serif;
+				animation: glow 5s linear infinite;
+			}
+
+			div {
+				padding: 15px 0px;
+				line-height: 24px;
+			}
+
+			h1, h2, h3, h4 {
+				line-height: normal;
+				text-align: center;
+			}
+
+			#message-container {
+				top: 60px;
+				position: absolute;
+				z-index: 1;
+				height: 100%;
+				width: 100%;
+				display: flex;
+				justify-content: center;
+				margin-bottom: 200px;
+			}
+
+			#birthday-message {
+				position: absolute;
+				padding: 30px;
+				background: white;
+				width: 400px;
+			}
+
+			.circle {
+			    display: inline-block;
+			    border-radius: 100px;
+			    position: absolute;
+			}
+			.small {
+			    height: 50px;
+			    width: 50px;
+			}
+			.medium {
+			    height: 100px;
+			    width: 100px;
+			}
+			.big {
+			    height: 150px;
+			    width: 150px;
+			}
+			.rotate {
+	  			animation-name: rotate;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+			.big-duration {
+				animation-duration: 4s;
+			}
+			.medium-duration {
+				animation-duration: 2s;
+			}
+
+			.small-duration {
+				animation-duration: 1s;
+			}
+
+			.falling {
+				position: absolute;
+				animation-name: falling;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+			.big-falling {
+				animation-duration: 15s;
+			}
+
+			.medium-falling {
+				animation-duration: 10s;
+			}
+
+			.small-falling {
+				animation-duration: 5s;
+			}
+
+			.big-depth {
+				opacity: 1;
+			}
+
+			.medium-depth {
+				opacity: .6;
+			}
+
+			.small-depth {
+				opacity: .3;
+			}
+
+			@keyframes glow {
+				0% {
+					background-color: lime; 
+				}
+
+				20% {
+					background-color: deepskyblue; 
+				}
+
+				40% {
+					background-color: blueviolet; 
+				}
+
+				60% {
+					background-color: magenta; 
+				}
+
+				80% {
+					background-color: yellow; 
+				}
+
+				100% {
+					background-color: lime; 
+				}
+			}
+
+			@keyframes falling {
+				0% {
+					top: 0%;
+				}
+
+				100% {
+					top: 100%;
+				}
+			}
+
+			@keyframes rotate {
+				0% {
+					transform: rotate(0deg);
+				}
+
+				100% {
+					transform: rotate(360deg);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="message-container">
+			<div id="birthday-message">
+				<h1>
+					Niole & Lisa’s Birthdays Party!!!		
+				</h1>
+				<div>
+					March is a wonderful month - spring blossoms, longer days, Peeps, Carnival.
+				</div>
+				<h3>
+					And
+				</h3>
+				<h2>
+					the birthday month of two of the most awesome people you know!
+				</h2>
+    
+				<div>
+					You are cordially invited to celebrate our birthday month with us at:
+					2nd Annual Niole & Lisa’s Birthdays Party!
+				</div>
+				<div>
+					Once again, the theme is <strong>Beers You Should Know.</strong>
+				</div>
+				<div>
+					The clawfoot bathtub will be transformed into a treasure trove brimming with most excellent beer. There will be snacks. There will be smart interesting people. There will be cake with candles, a birthday song, and present opening. (Bring presents!)
+				</div>
+				<div>
+					Thursday March 14th
+					3033 Market Street
+					6:30pm - late
+				</div>
+				<div>
+					Hope you can join us!!
+				</div>
+			</div>
+		</div>
+		<script>
+			var pieSizes = ['medium', 'big', 'small'];
+			var durations = ['big-duration', 'small-duration', 'medium-duration'];
+			var depths = ['big-depth', 'small-depth', 'medium-depth'];
+			var fallingDurations = ['small-falling', 'big-falling', 'medium-falling'];
+
+			function getTotalPies() {
+				return Math.ceil(window.innerWidth / 200);
+			}
+
+			function getPieLeft(index) {
+				var piesPerWidth = getTotalPies();
+				var left = ((index % piesPerWidth) * 200) + 'px;';
+				return left;
+			}
+
+			function getRandomIndex(maxLength) {
+				return Math.floor(Math.random() * maxLength);
+			}
+
+			function getFallingClasses() {
+				var duration = fallingDurations[getRandomIndex(fallingDurations.length)];
+				return 'falling %duration'.replace('%duration', duration);
+			}
+
+			function getPieClasses() {
+				var size = pieSizes[getRandomIndex(pieSizes.length)];
+				var duration = durations[getRandomIndex(durations.length)];
+				var depth = depths[getRandomIndex(depths.length)];
+
+				return 'rotate circle %size %duration %depth'
+				.replace('%size', size)
+				.replace('%duration',  duration)
+				.replace('%depth', depth);
+			}
+
+			function createElement(path) {
+				var img = document.createElement('img');
+				img.setAttribute('src', path);
+				img.setAttribute('class', getPieClasses());
+				return img;
+			}
+
+			function createBluePeep() {
+				return createElement('bluepeep.svg');
+			}
+
+			function createPie() {
+				return createElement('cherrypie.svg');
+			}
+
+			function createBeer() {
+				return createElement('beer.svg');
+			}
+
+			function createCarnival() {
+				return createElement('carnival.svg');
+			}
+
+			function createBeers() {
+				createElements(createBeer);
+			}
+
+			function createPies() {
+				createElements(createPie);
+			}
+
+			function createCarnivals() {
+				createElements(createCarnival);
+			}
+
+			function createElements(createElement) {
+				var totalPies = getTotalPies();
+				var pies = Array(totalPies).fill(null).map(function(x, i) {
+					if (Math.random() >= .5) {
+						var container = document.createElement('span');
+						container.setAttribute('class', getFallingClasses());
+						var img = createElement();
+						container.appendChild(img);
+						container.setAttribute('style', 'left:' + getPieLeft(i));
+						document.body.append(container);
+						return container;
+					}
+				}).filter(function (x) { return !!x; });
+
+				setTimeout(function() {
+					pies.forEach(function(pie) {
+						pie.remove();
+					});
+				}, 10000);
+			}
+
+			function startPieFall() {
+				createPies();
+				setInterval(function() {
+					createPies();
+				}, 2500);
+			}
+
+			function startBeerFall() {
+				createBeers();
+				setInterval(function() {
+					createBeers();
+				}, 3000);
+			}
+
+			function startCarnivalFall() {
+				createCarnivals();
+				setInterval(function() {
+					createCarnivals();
+				}, 4000);
+			}
+
+			function startBluePeepFall() {
+				createElements(createBluePeep);
+				setInterval(function() {
+					createElements(createBluePeep);
+				}, 3500);
+			}
+
+			startCarnivalFall();
+			startBluePeepFall();
+			startBeerFall();
+			startPieFall();
+		</script>
+	</body>
+</html>
