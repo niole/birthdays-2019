@@ -135,5 +135,4 @@ document.addEventListener("DOMContentLoaded", function () {
 	createElements(function() {
 		return createElement('niole.svg');
 	});
-
 });

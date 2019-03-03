@@ -6,6 +6,10 @@ body {
 	animation: glow 30s linear infinite;
 }
 
+marquee {
+	position: fixed;
+}
+
 div {
 	padding: 15px 0px;
 	line-height: 24px;
