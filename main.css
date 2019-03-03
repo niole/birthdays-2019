@@ -1,8 +1,9 @@
 body {
 	height: 110vh;
-	background-image: linear-gradient(to right, transparent, white, transparent); 
+	background-image: linear-gradient(to top, lime, deepskyblue, blueviolet, magenta, yellow, lime);
+	background-size: 1000% 1000%;
 	font-family: 'Lora', serif;
-	animation: glow 5s linear infinite;
+	animation: glow 30s linear infinite;
 }
 
 div {
@@ -98,37 +99,21 @@ h1, h2, h3, h4 {
 
 @keyframes glow {
 	0% {
-		background-color: lime; 
-	}
-
-	20% {
-		background-color: deepskyblue; 
-	}
-
-	40% {
-		background-color: blueviolet; 
-	}
-
-	60% {
-		background-color: magenta; 
-	}
-
-	80% {
-		background-color: yellow; 
+		background-position: 0% 0%;
 	}
 
 	100% {
-		background-color: lime; 
+		background-position: 100% 100%;
 	}
 }
 
 @keyframes falling {
 	0% {
-		top: 0%;
+		transform: translateY(0vh);
 	}
 
 	100% {
-		top: 100%;
+		transform: translateY(100vh);
 	}
 }
 
