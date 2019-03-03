@@ -127,4 +127,13 @@ document.addEventListener("DOMContentLoaded", function () {
 	startBluePeepFall();
 	startBeerFall();
 	startPieFall();
+
+	createElements(function() {
+		return createElement('lisa.svg');
+	});
+
+	createElements(function() {
+		return createElement('niole.svg');
+	});
+
 });
