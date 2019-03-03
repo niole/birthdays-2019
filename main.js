@@ -68,57 +68,62 @@ function createCarnivals() {
 	createElements(createCarnival);
 }
 
-function createElements(createElement) {
+function createElements(createElement, clearPiesTimeout) {
 	var totalPies = getTotalPies();
-	var pies = Array(totalPies).fill(null).map(function(x, i) {
-		if (Math.random() >= .5) {
-			var container = document.createElement('span');
-			container.setAttribute('class', getFallingClasses());
-			var img = createElement();
-			container.appendChild(img);
-			container.setAttribute('style', 'left:' + getPieLeft(i));
-			document.body.append(container);
-			return container;
-		}
-	}).filter(function (x) { return !!x; });
+	var divPool = [];
+	var usedDivs = [];
+	function creator() {
+		for (var i = 0; i < totalPies; i++) {
+			if (Math.random() >= .5) {
+				var container;
+				var img;
+				var shouldAppendChild = false;
+				if (divPool.length > 0) {
+					container = divPool.pop();
+					img = container.childNodes[0];
+					img.setAttribute('class', getPieClasses());
+				} else {
+					shouldAppendChild = true;
+					container = document.createElement('span');
+					img = createElement();
+				}
+				usedDivs.push(container);
+				container.setAttribute('class', getFallingClasses());
+				container.setAttribute('style', 'left:' + getPieLeft(i));
 
-	setTimeout(function() {
-		pies.forEach(function(pie) {
-			pie.remove();
-		});
-	}, 10000);
+				if (shouldAppendChild) {
+					container.appendChild(img);
+					document.body.append(container);
+				}
+			}
+		}
+	}
+	creator();
+	setInterval(function() {
+		console.log(document.querySelectorAll('img'));
+		var toAdd = usedDivs.splice(0, totalPies);
+		divPool = divPool.concat(toAdd);
+		creator();
+	}, 5000);
 }
 
 function startPieFall() {
 	createPies();
-	setInterval(function() {
-		createPies();
-	}, 2500);
 }
 
 function startBeerFall() {
 	createBeers();
-	setInterval(function() {
-		createBeers();
-	}, 3000);
 }
 
 function startCarnivalFall() {
 	createCarnivals();
-	setInterval(function() {
-		createCarnivals();
-	}, 4000);
 }
 
 function startBluePeepFall() {
 	createElements(createBluePeep);
-	setInterval(function() {
-		createElements(createBluePeep);
-	}, 3500);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-	console.log('read');
 	startCarnivalFall();
 	startBluePeepFall();
 	startBeerFall();
