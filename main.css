@@ -52,7 +52,7 @@ h1, h2, h3, h4 {
 
 .circle {
     display: inline-block;
-    border-radius: 100px;
+    border-radius: 100%;
     position: absolute;
 }
 .small {
