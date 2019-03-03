@@ -45,7 +45,7 @@ function createBluePeep() {
 }
 
 function createPie() {
-	return createElement('cherrypie.svg');
+	return createElement('cherryblossom.svg');
 }
 
 function createBeer() {

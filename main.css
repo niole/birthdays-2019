@@ -9,11 +9,27 @@ body {
 div {
 	padding: 15px 0px;
 	line-height: 24px;
+	text-align: center;
 }
 
 h1, h2, h3, h4 {
 	line-height: normal;
 	text-align: center;
+}
+
+.beersushuldknow {
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.address {
+    font-size: 27px;
+    font-weight: bold;
+    line-height: 1.2;
+    width: 268px;
+    border: 7px double;
+    margin: 30px auto;
+    padding: 30px 20px;
 }
 
 #message-container {
