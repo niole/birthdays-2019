@@ -1,0 +1,143 @@
+body {
+	height: 110vh;
+	background-image: linear-gradient(to right, transparent, white, transparent); 
+	font-family: 'Lora', serif;
+	animation: glow 5s linear infinite;
+}
+
+div {
+	padding: 15px 0px;
+	line-height: 24px;
+}
+
+h1, h2, h3, h4 {
+	line-height: normal;
+	text-align: center;
+}
+
+#message-container {
+	top: 60px;
+	position: absolute;
+	z-index: 1;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 200px;
+}
+
+#birthday-message {
+	position: absolute;
+	padding: 30px;
+	background: white;
+	width: 400px;
+}
+
+.circle {
+    display: inline-block;
+    border-radius: 100px;
+    position: absolute;
+}
+.small {
+    height: 50px;
+    width: 50px;
+}
+.medium {
+    height: 100px;
+    width: 100px;
+}
+.big {
+    height: 150px;
+    width: 150px;
+}
+.rotate {
+	animation-name: rotate;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.big-duration {
+	animation-duration: 4s;
+}
+.medium-duration {
+	animation-duration: 2s;
+}
+
+.small-duration {
+	animation-duration: 1s;
+}
+
+.falling {
+	position: absolute;
+	animation-name: falling;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+.big-falling {
+	animation-duration: 15s;
+}
+
+.medium-falling {
+	animation-duration: 10s;
+}
+
+.small-falling {
+	animation-duration: 5s;
+}
+
+.big-depth {
+	opacity: 1;
+}
+
+.medium-depth {
+	opacity: .6;
+}
+
+.small-depth {
+	opacity: .3;
+}
+
+@keyframes glow {
+	0% {
+		background-color: lime; 
+	}
+
+	20% {
+		background-color: deepskyblue; 
+	}
+
+	40% {
+		background-color: blueviolet; 
+	}
+
+	60% {
+		background-color: magenta; 
+	}
+
+	80% {
+		background-color: yellow; 
+	}
+
+	100% {
+		background-color: lime; 
+	}
+}
+
+@keyframes falling {
+	0% {
+		top: 0%;
+	}
+
+	100% {
+		top: 100%;
+	}
+}
+
+@keyframes rotate {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
